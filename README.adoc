@@ -1,0 +1,16 @@
+= World record, overview and use cases
+
+Slides for conference `Devoxx France 2022`
+
+== Tools
+
+Based on https://github.com/asciidoctor/asciidoctor-reveal.js
+
+Pre-requisites:: npm
+
+.Generate HTML slides
+[source]
+----
+npm install
+npm run build
+----

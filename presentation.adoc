@@ -1,0 +1,27 @@
+= 🌍 Records du monde 
+:source-highlighter: highlightjs
+:revealjs_theme: white
+:revealjs_history: true
+:revealjs_plugin_pdf: enabled
+:revealjs_plugin_highlight: enabled
+:customcss: custom.css
+:data-uri:
+:icons: font
+
+== World Record
+
+image::images/guinness.jpeg[]
+
+== Record en Java
+
+[source, java]
+----
+public record Point(double x, double y)
+----
+
+== Benoit Prioux
+
+icon:twitter[] icon:github[] binout 
+
+image::images/alan-eng.jpeg[]
+

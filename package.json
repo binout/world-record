@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "@asciidoctor/reveal.js": "^5.0.0-rc.1",
+    "asciidoctor": "^2.2.6",
+    "npm-watch": "^0.11.0",
+    "reveal.js": "^4.2.1"
+  },
+  "watch": {
+    "build": "presentation.adoc"
+  },
+  "scripts": {
+    "build": "node asciidoctor-reveal.js",
+    "watch": "npm-watch"
+  }
+}
