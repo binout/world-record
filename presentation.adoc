@@ -12,11 +12,11 @@
 
 image::images/guinness.jpeg[]
 
-== Record en Java
+== Record depuis Java 16
 
 [source, java]
 ----
-public record Point(double x, double y)
+public record Point(int x, int y)
 ----
 
 == Benoit Prioux
@@ -24,4 +24,97 @@ public record Point(double x, double y)
 icon:twitter[] icon:github[] binout 
 
 image::images/alan-eng.jpeg[]
+
+== Avant les Records, Lombok
+
+== case class en Scala
+
+[source, scala]
+----
+case class Point(x: Int, y: Int)
+----
+
+== data class en Kotlin
+
+[source, kotlin]
+----
+data class Point(x: Int, y: Int)
+----
+
+== @dataclass en Python
+
+[source, python]
+----
+@dataclass
+class Point:
+  x: int
+  y: int
+----
+
+== Record en Java
+
+TODO
+
+
+== Oui mais pourquoi faire ?
+
+TODO
+
+
+== Domain Driven Design
+
+TODO
+
+
+== Value Object
+
+TODO
+
+
+== Post Validation
+
+TODO
+
+== Et si on ajoutait des méthodes ?
+
+TODO
+
+== En route vers les monoides ?
+
+TODO
+
+
+== Pour quels problèmes ?
+
+TODO
+
+
+== Exemple 
+
+TODO
+
+
+== Et après ? Le pattern matching ! 
+
+TODO
+
+
+== JEP 405 : Record Patterns (Preview)
+
+https://openjdk.java.net/jeps/405
+
+[source, java]
+----
+record Point(int x, int y) {}
+
+void printSum(Object o) {
+    if (o instanceof Point(int x, int y)) {
+        System.out.println(x+y);
+    }
+}
+----
+
+== Pour conclure
+
+TODO
 
