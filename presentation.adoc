@@ -25,23 +25,23 @@ icon:twitter[] icon:github[] binout
 
 image::images/alan-eng.jpeg[]
 
-== Avant les Records, Lombok
+== 🪱 Avant les Records, Lombok
 
-== case class en Scala
+== 🪜 case class en Scala
 
 [source, scala]
 ----
 case class Point(x: Int, y: Int)
 ----
 
-== data class en Kotlin
+== 🅺 data class en Kotlin
 
 [source, kotlin]
 ----
 data class Point(x: Int, y: Int)
 ----
 
-== @dataclass en Python
+== 🐍 @dataclass en Python
 
 [source, python]
 ----
@@ -51,27 +51,26 @@ class Point:
   y: int
 ----
 
-== Record en Java
+== ☕️ Record en Java
 
-TODO
-
+* `equals`, `hashcode` et `toString`
+* Valeurs immutables (final)
 
 == Oui mais pourquoi faire ?
 
 TODO
+
+== 😱 Primitive Obsession 
+
+
+== Self validation
 
 
 == Domain Driven Design
 
 TODO
 
-
 == Value Object
-
-TODO
-
-
-== Post Validation
 
 TODO
 
@@ -82,7 +81,6 @@ TODO
 == En route vers les monoides ?
 
 TODO
-
 
 == Pour quels problèmes ?
 
