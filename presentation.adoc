@@ -14,9 +14,91 @@ image::images/guinness.jpeg[]
 
 == Record depuis Java 16
 
+* JD4 14 : JEP 359 Records (Preview)
+* JDK 15 : JEP 384 Records (Second Preview)
+* JDK 16 : JEP 395: Records
+
 [source, java]
 ----
 public record Point(int x, int y)
+----
+
+== Des champs immutables
+
+[source, java]
+----
+public record Point(int x, int y)
+----
+
+[source, java]
+----
+public class Point {
+  private final int x;
+  private final int y;
+
+  public Point(int x, int y) {
+      this.x = x;
+      this.y = y;
+  }
+  ....
+}
+----
+
+== toString
+
+[source, java]
+----
+public record Point(int x, int y)
+----
+
+[source, java]
+----
+public class Point {
+  private final int x;
+  private final int y;
+
+  ....
+
+  @Override
+    public String toString() {
+        return "Point [x=" + x + ", y=" + y + "]";
+    }
+}
+----
+
+== equals / hasCode
+
+[source, java]
+----
+public record Point(int x, int y)
+----
+
+[source, java]
+----
+public class Point {
+  private final int x;
+  private final int y;
+
+  ....
+
+  @Override
+  public int hashCode() {
+      return Objects.hash(x, y);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+      if (this == obj) {
+          return true;
+      } else if (!(obj instanceof Point)) {
+          return false;
+      } else {
+          Point other = (Point) obj;
+          return Objects.equals(x, other.x)
+            && Objects.equals(y, other.y);
+      }
+  }
+}
 ----
 
 == Benoit Prioux
