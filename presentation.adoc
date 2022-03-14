@@ -107,6 +107,10 @@ icon:twitter[] icon:github[] binout
 
 image::images/alan-eng.jpeg[]
 
+== De Java à Python, en passant par Kotlin
+
+image::images/timeline.png[]
+
 == 🪱 Avant les Records, Lombok
 
 == 🪜 case class en Scala
@@ -127,25 +131,20 @@ data class Point(x: Int, y: Int)
 
 [source, python]
 ----
-@dataclass
+@dataclass(Frozen=True)
 class Point:
   x: int
   y: int
 ----
 
-== ☕️ Record en Java
-
-* `equals`, `hashcode` et `toString`
-* Valeurs immutables (final)
-
 == Oui mais pourquoi faire ?
 
-TODO
+image::images/record-why.png[]
 
 == 😱 Primitive Obsession 
 
 
-== Self validation
+== Clean code
 
 
 == Domain Driven Design
