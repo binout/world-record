@@ -20,25 +20,27 @@ image::images/guinness.jpeg[]
 
 [source, java]
 ----
-public record Point(int x, int y)
+public record MedalCount(int gold, int silver, int bronze)
 ----
 
 == Des champs immutables
 
 [source, java]
 ----
-public record Point(int x, int y)
+public record MedalCount(int gold, int silver, int bronze)
 ----
 
 [source, java]
 ----
-public class Point {
-  private final int x;
-  private final int y;
+public class MedalCount {
+  private final int gold;
+  private final int silver;
+  private final int bronze;
 
-  public Point(int x, int y) {
-      this.x = x;
-      this.y = y;
+  public MedalCount(int gold, int silver, int bronze) {
+      this.gold = gold;
+      this.silver = silver;
+      this.bronze = bronze;
   }
   ....
 }
@@ -48,21 +50,21 @@ public class Point {
 
 [source, java]
 ----
-public record Point(int x, int y)
+public record MedalCount(int gold, int silver, int bronze)
 ----
 
 [source, java]
 ----
-public class Point {
-  private final int x;
-  private final int y;
-
+public class MedalCount {
+  private final int gold;
+  private final int silver;
+  private final int bronze;
   ....
 
   @Override
-    public String toString() {
-        return "Point [x=" + x + ", y=" + y + "]";
-    }
+  public String toString() {
+    return "MedalCount [gold=" + gold + ", silver=" + silver + ", bronze=" + bronze + "]";
+  }
 }
 ----
 
@@ -70,32 +72,33 @@ public class Point {
 
 [source, java]
 ----
-public record Point(int x, int y)
+public record MedalCount(int gold, int silver, int bronze)
 ----
 
 [source, java]
 ----
-public class Point {
-  private final int x;
-  private final int y;
-
+public class MedalCount {
+  private final int gold;
+  private final int silver;
+  private final int bronze;
   ....
 
   @Override
   public int hashCode() {
-      return Objects.hash(x, y);
+      return Objects.hash(gold, silver, bronze);
   }
 
   @Override
   public boolean equals(Object obj) {
       if (this == obj) {
           return true;
-      } else if (!(obj instanceof Point)) {
+      } else if (!(obj instanceof MedalCount)) {
           return false;
       } else {
-          Point other = (Point) obj;
-          return Objects.equals(x, other.x)
-            && Objects.equals(y, other.y);
+          MedalCount other = (MedalCount) obj;
+          return Objects.equals(gold, other.gold)
+            && Objects.equals(silver, other.silver)
+            && Objects.equals(bronze, other.bronze);
       }
   }
 }
@@ -117,14 +120,14 @@ image::images/timeline.png[]
 
 [source, scala]
 ----
-case class Point(x: Int, y: Int)
+case class MedalCount(gold: Int, silver: Int, bronze: Int)
 ----
 
 == 🅺 data class en Kotlin
 
 [source, kotlin]
 ----
-data class Point(x: Int, y: Int)
+data class MedalCount(gold: Int, silver: Int, bronze: Int)
 ----
 
 == 🐍 @dataclass en Python
@@ -132,20 +135,69 @@ data class Point(x: Int, y: Int)
 [source, python]
 ----
 @dataclass(Frozen=True)
-class Point:
-  x: int
-  y: int
+class MedalCount:
+  gold: int
+  silver: int
+  bronze: int
 ----
 
 == Oui mais pourquoi faire ?
 
 image::images/record-why.png[]
 
-== 😱 Primitive Obsession 
+== 😱 Primitive Obsession - Probleme 
 
+* Utilisation de types primitifs pour modéliser des "petits" objets 
 
-== Clean code
+[source, java]
+----
+public MedalCount getMedalCount(String country, 
+                                String olympicGame, 
+                                String sport) {
+  ....
+}
 
+var medalCount = getMedalCount("FR", "14", "swimming") // ✅
+var medalCount = getMedalCount("14", "FR", "swimming") // 🤯
+----
+
+== 💡 Primitive Obsession - Solution 
+
+* Utilisation de record pour modéliser des "petits" objets
+
+[source, java]
+----
+public record CountryCode(String value)
+public record OlympicGameId(String value)
+public record SportName(String value)
+
+public MedalCount getMedalCount(CountryCode countryCode, 
+                                OlympicGameId olympicGameId, 
+                                SportName sportName) {
+  ....
+}
+
+var medalCount = getMedalCount(CountryCode("FR"), 
+                               OlympicGameId("14"), 
+                               SportName("swimming")) // ✅
+----
+
+== Validation des données
+
+* Validation post contruction pour assurer des invariants métier
+
+[source, java]
+----
+public record MedalCount(int gold, int silver, int bronze) {
+
+  public MedalCount {
+    if (gold < 0 || silver < 0 || bronze < 0) {
+      throw new IllegalArgumentException("Medal count should be positive")
+    }
+  }
+}
+
+----
 
 == Domain Driven Design
 

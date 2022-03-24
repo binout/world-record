@@ -1,3 +1,5 @@
 node_modules
 *.html
 .DS_Store
+java/.idea
+java/target
