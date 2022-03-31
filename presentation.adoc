@@ -28,6 +28,11 @@ public record MedalCount(int gold, int silver, int bronze)
 [source, java]
 ----
 public record MedalCount(int gold, int silver, int bronze)
+
+var medalCount = new MedalCount(1, 2, 3);
+var gold = medalCount.gold;
+var silver = medalCount.silver;
+var bronze = medalCount.bronze;
 ----
 
 [source, java]
@@ -63,7 +68,7 @@ public class MedalCount {
 
   @Override
   public String toString() {
-    return "MedalCount [gold=" + gold + ", silver=" + silver + ", bronze=" + bronze + "]";
+    return "MedalCount[gold=" + gold + ", silver=" + silver + ", bronze=" + bronze + "]";
   }
 }
 ----
@@ -116,6 +121,27 @@ image::images/timeline.png[]
 
 == 🪱 Avant les Records, Lombok
 
+[source, java]
+----
+@Data
+public class MedalCount {
+    private final int gold;
+    private final int silver;
+    private final int bronze;
+}
+
+MedalCount medalCount = new MedalCount(1, 2, 3);
+var gold = medalCount.getGold();
+var silver = medalCount.getSilver();
+var bronze = medalCount.getBronze();
+----
+
+== 🪱 Avant les Records, Lombok
+
+* 🔗 Dépendance nécessaire
+* 🪄 Configuration Annotation Processor
+* 🤯 Ouvre la porte à d'autres fonctionnalités
+
 == 🪜 case class en Scala
 
 [source, scala]
@@ -145,7 +171,23 @@ class MedalCount:
 
 image::images/record-why.png[]
 
-== 😱 Primitive Obsession - Probleme 
+== Local records
+
+[source, java]
+----
+public List<String> sortCountryByMedal(List<String> countries) {
+
+      record Data(String country, MedalCount medalCount){}
+
+      return countries.stream()
+              .map(country -> new Data(country, getMedalCount(country)))
+              .sorted(Comparator.comparing(d -> d.medalCount))
+              .map(Data::country)
+              .collect(toList());
+  }
+----
+
+== 😱 Primitive Obsession - Problème 
 
 * Utilisation de types primitifs pour modéliser des "petits" objets 
 
@@ -161,9 +203,9 @@ var medalCount = getMedalCount("FR", "14", "swimming") // ✅
 var medalCount = getMedalCount("14", "FR", "swimming") // 🤯
 ----
 
-== 💡 Primitive Obsession - Solution 
+== 💡 Primitive Obsession - Record ! 
 
-* Utilisation de record pour modéliser des "petits" objets
+* `Identifier Type` pattern
 
 [source, java]
 ----
@@ -196,16 +238,17 @@ public record MedalCount(int gold, int silver, int bronze) {
     }
   }
 }
-
 ----
 
 == Domain Driven Design
 
-TODO
+image::images/ddd.png[]
 
-== Value Object
 
-TODO
+== Entity vs Value Object
+
+* `Entity`: objet métier avec une identité et un cycle de vie
+* `Value Object`: objet métier immutable et défini par ses attributs
 
 == Et si on ajoutait des méthodes ?
 

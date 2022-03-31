@@ -15,6 +15,7 @@ public class MedalCountTest {
         assertEquals(medalCount.gold(), 5);
         assertEquals(medalCount.silver(), 2);
         assertEquals(medalCount.bronze(), 1);
+        assertEquals("MedalCount[gold=5, silver=2, bronze=1]", medalCount.toString());
 
         assertThrows(IllegalArgumentException.class, () -> {
             new MedalCount(-1, 0, 1);
