@@ -342,11 +342,47 @@ image::images/devoxx-background.png[background, size=cover]
 🎉 Les records, solution idéale pour modéliser les Value Objects ! 🎉
 ====
 
+== Exemple - Value Object
+
+image::images/devoxx-background.png[background, size=cover]
+
+[source%linenums, java]
+----
+public enum Unit { m, km }
+
+public record Distance(long value, Unit unit)
+
+var d1 = new Distance(100, m)
+var d2 = new Distance(400, m)
+var d3 = new Distance(42, km)
+----
+
 == Et si on ajoutait des méthodes ?
 
 image::images/devoxx-background.png[background, size=cover]
 
-TODO
+[source%linenums, java]
+----
+public enum Unit { m(1), km(1000);
+    final int valueInMeter;
+    Unit(int valueInMeter) {
+        this.valueInMeter = valueInMeter;
+    }
+}
+
+public record Distance(long value, Unit unit) {
+    Distance asMeter() {
+      return new Distance(
+        this.value * this.unit.valueInMeter, m)
+    }
+
+    public Distance add(Distance other) {
+      return new Distance(
+        this.asMeter().value + other.asMeter().value, m)
+    }
+}
+
+----
 
 == En route vers les monoides ?
 
