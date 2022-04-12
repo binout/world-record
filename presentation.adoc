@@ -38,7 +38,7 @@ image::images/guinness.jpeg[width=70%]
 
 image::images/devoxx-background.png[background, size=cover]
 
-* JD4 14 : JEP 359 Records (Preview)
+* JDK 14 : JEP 359 Records (Preview)
 * JDK 15 : JEP 384 Records (Second Preview)
 * JDK 16 : JEP 395: Records
 
@@ -348,89 +348,98 @@ image::images/devoxx-background.png[background, size=cover]
 
 [source%linenums, java]
 ----
-public enum Unit { m, km }
+public record MedalCount(int gold, int silver, int bronze) 
+              implements Comparable<MedalCount> {
 
-public record Distance(long value, Unit unit)
+  public MedalCount {
+    if (gold < 0 || silver < 0 || bronze < 0) {
+      throw new IllegalArgumentException(
+        "Medal count should be positive")
+    }
+  }
 
-var d1 = new Distance(100, m)
-var d2 = new Distance(400, m)
-var d3 = new Distance(42, km)
+  public int total() {
+      return gold + silver + bronze;
+  }
+
+  @Override
+  public int compareTo(MedalCount medalCount) {
+      return Comparator.comparing(MedalCount::gold)
+              .thenComparing(MedalCount::silver)
+              .thenComparing(MedalCount::bronze)
+              .compare(this, medalCount);
+  }
+}
 ----
 
-== Et si on ajoutait des méthodes ?
+== Encore d'autres méthodes !
 
 image::images/devoxx-background.png[background, size=cover]
 
 [source%linenums, java]
 ----
-public enum Unit { m(1), km(1000);
-    final int valueInMeter;
-    Unit(int valueInMeter) {
-        this.valueInMeter = valueInMeter;
-    }
+public record MedalCount(int gold, int silver, int bronze) {
+
+  public MedalCount add(MedalCount medalCount) {
+      return new MedalCount(
+              gold + medalCount.gold,
+              silver + medalCount.silver,
+              bronze + medalCount.bronze);
+  }
+
 }
-
-public record Distance(long value, Unit unit) {
-    Distance asMeter() {
-      return new Distance(
-        this.value * this.unit.valueInMeter, m)
-    }
-
-    public Distance add(Distance other) {
-      return new Distance(
-        this.asMeter().value + other.asMeter().value, m)
-    }
-}
-
 ----
 
-== En route vers les monoides ?
+== Vous avez reconnu le Monoid 🙈
 
 image::images/devoxx-background.png[background, size=cover]
-
-TODO
-
-== Pour quels problèmes ?
-
-image::images/devoxx-background.png[background, size=cover]
-
-TODO
-
-
-== Exemple 
-
-image::images/devoxx-background.png[background, size=cover]
-
-TODO
-
-
-== Et après ? Le pattern matching ! 
-
-image::images/devoxx-background.png[background, size=cover]
-
-TODO
-
-
-== JEP 405 : Record Patterns (Preview)
-
-image::images/devoxx-background.png[background, size=cover]
-
-https://openjdk.java.net/jeps/405
 
 [source%linenums, java]
 ----
-record Point(int x, int y) {}
+public record MedalCount(int gold, int silver, int bronze) {
 
-void printSum(Object o) {
-    if (o instanceof Point(int x, int y)) {
-        System.out.println(x+y);
-    }
+  /* Binary Operator */
+  public MedalCount add(MedalCount medalCount) {
+      return new MedalCount(
+              gold + medalCount.gold,
+              silver + medalCount.silver,
+              bronze + medalCount.bronze());
+  }
+
+  /* Neutral Element */
+  public static MedalCount NEUTRAL_ELEMENT 
+                      = new MedalCount(0, 0, 0);
 }
 ----
 
-== Pour conclure
+== Vous avez reconnu le Monoid 🙈
+
+[source%linenums, java]
+----
+var count1 = new MedalCount(5, 2, 1);
+var count2 = count1.add(NEUTRAL_ELEMENT); 
+print(count1.equals(count2)) /* true */
+
+/* Associativity */
+var count3 = new MedalCount(1, 3, 0);
+
+print(count3.add(count2)) /* MedalCount(6, 5, 1) */
+print(count2.add(count3)) /* MedalCount(6, 5, 1) */
+----
+
+== Monoid : DDD + FP 
 
 image::images/devoxx-background.png[background, size=cover]
 
-TODO
+https://www.youtube.com/watch?v=_jr8E5GVnBA[Les monoïdes démystifiés, en Java et avec des verres de bière](Devoxx 2015
+- Cyrill Martraire)
 
+image::images/monoid.png[width=60%]
+
+== Merci 🙏
+
+image::images/devoxx-background.png[background, size=cover]
+
+https://binout.github.io/world-record/
+
+image::images/meme.png[]

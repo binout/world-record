@@ -4,10 +4,16 @@ import java.util.Comparator;
 
 public record MedalCount(int gold, int silver, int bronze) implements Comparable<MedalCount> {
 
+    public static MedalCount NEUTRAL_ELEMENT = new MedalCount(0, 0, 0);
+
     public MedalCount {
         if (gold < 0 || silver < 0 || bronze < 0) {
             throw new IllegalArgumentException("Medal count should be positive");
         }
+    }
+
+    public int total() {
+        return gold + silver + bronze;
     }
 
     @Override
