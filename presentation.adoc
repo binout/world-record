@@ -103,7 +103,7 @@ public class MedalCount {
 }
 ----
 
-== equals / hasCode
+== equals / hashCode
 
 image::images/devoxx-background.png[background, size=cover]
 
