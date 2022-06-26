@@ -24,19 +24,18 @@ revealDiv.appendChild(footer);
 </script>
 <div id="custom-footer" class="footer">
 @binout
-#DevoxxFR2022
 </div>
 ++++
 
 == World Record
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 image::images/guinness.jpeg[width=70%]
 
 == Record depuis Java 16
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 * JDK 14 : JEP 359 Records (Preview)
 * JDK 15 : JEP 384 Records (Second Preview)
@@ -49,7 +48,7 @@ public record MedalCount(int gold, int silver, int bronze)
 
 == Des champs immutables
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 [source%linenums, java]
 ----
@@ -79,7 +78,7 @@ public class MedalCount {
 
 == toString
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 [source, java]
 ----
@@ -105,7 +104,7 @@ public class MedalCount {
 
 == equals / hashCode
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 [source, java]
 ----
@@ -143,7 +142,7 @@ public class MedalCount {
 
 == Benoit Prioux
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 icon:twitter[] icon:github[] binout 
 
@@ -151,13 +150,13 @@ image::images/alan-eng.jpeg[]
 
 == De Java à Python, en passant par Kotlin
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 image::images/timeline.png[]
 
 == 🪱 Avant les Records, Lombok
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 [source%linenums, java]
 ----
@@ -176,7 +175,7 @@ int bronze = medalCount.getBronze();
 
 == 🪱 Avant les Records, Lombok
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 * 🔗 Dépendance nécessaire
 * 🪄 Configuration Annotation Processor
@@ -184,7 +183,7 @@ image::images/devoxx-background.png[background, size=cover]
 
 == 🪜 case class en Scala
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 [source, scala]
 ----
@@ -193,7 +192,7 @@ case class MedalCount(gold: Int, silver: Int, bronze: Int)
 
 == 🅺 data class en Kotlin
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 [source, kotlin]
 ----
@@ -202,7 +201,7 @@ data class MedalCount(gold: Int, silver: Int, bronze: Int)
 
 == 🐍 @dataclass en Python
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 [source, python]
 ----
@@ -215,13 +214,13 @@ class MedalCount:
 
 == Oui mais pourquoi faire ?
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 image::images/record-why.png[]
 
 == 🔀 Data Transfer Objects
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 * Objet de transport de donnée pour faciliter la sérialisation/désérialisation
 * Facilité d'écriture avec les records
@@ -230,7 +229,7 @@ image::images/dto.png[width=75%]
 
 == 🔑 Clé dans une map
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 * Les records comme clé composée pour une map
 
@@ -246,7 +245,7 @@ countryPerMedals.put(
 
 == 📍 Local records
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 [source%linenums, java]
 ----
@@ -265,7 +264,7 @@ public List<String> sortCountryByMedal(List<String> countries) {
 
 == 😱 Primitive Obsession - Problème 
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 * Utilisation de types primitifs pour modéliser des "petits" objets 
 
@@ -283,7 +282,7 @@ var medalCount = getMedalCount("14", "FR", "swimming"); 🤯
 
 == 💡 Primitive Obsession - Record ! 
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 * `Identifier Type` pattern
 
@@ -306,7 +305,7 @@ var medalCount = getMedalCount(CountryCode("FR"),
 
 == ✅ Validation des données
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 * Validation post contruction pour assurer des invariants métier
 
@@ -325,14 +324,14 @@ public record MedalCount(int gold, int silver, int bronze) {
 
 == Domain Driven Design
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 image::images/ddd.png[width=70%]
 
 
 == Entity vs Value Object
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 * `Entity`: objet métier avec une identité et un cycle de vie
 * `Value Object`: objet métier immutable et défini par ses attributs
@@ -344,7 +343,7 @@ image::images/devoxx-background.png[background, size=cover]
 
 == Exemple - Value Object
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 [source%linenums, java]
 ----
@@ -374,7 +373,7 @@ public record MedalCount(int gold, int silver, int bronze)
 
 == Encore d'autres méthodes !
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 [source%linenums, java]
 ----
@@ -392,7 +391,7 @@ public record MedalCount(int gold, int silver, int bronze) {
 
 == Vous avez reconnu le Monoid 🙈
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 [source%linenums, java]
 ----
@@ -430,7 +429,7 @@ print(countLeft.equals(countRight)) /* true */
 
 == Monoid : DDD + FP 
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 https://www.youtube.com/watch?v=_jr8E5GVnBA[Les monoïdes démystifiés, en Java et avec des verres de bière](Devoxx 2015
 - Cyrill Martraire)
@@ -439,7 +438,7 @@ image::images/monoid.png[width=60%]
 
 == Merci 🙏
 
-image::images/devoxx-background.png[background, size=cover]
+image::images/{conf}-background.png[background, size=cover]
 
 https://binout.github.io/world-record/
 

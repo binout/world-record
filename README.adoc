@@ -1,6 +1,6 @@
 = World record, overview and use cases
 
-Slides for conference `Devoxx France 2022`
+Slides for conference `Devoxx France 2022` and `BreizhCamp 2022`
 
 == Tools
 

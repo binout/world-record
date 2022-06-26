@@ -1,8 +1,10 @@
 // Load Asciidoctor.js and the reveal.js converter
-var asciidoctor = require('@asciidoctor/core')()
-var asciidoctorRevealjs = require('@asciidoctor/reveal.js')
+const asciidoctor = require('@asciidoctor/core')()
+const asciidoctorRevealjs = require('@asciidoctor/reveal.js')
 asciidoctorRevealjs.register()
 
+const conferences = ['devoxx', 'breizhcamp']
 // Convert the document 'presentation.adoc' using the reveal.js converter
-var options = { safe: 'safe', backend: 'revealjs' }
-asciidoctor.convertFile('presentation.adoc', options)
+const options = { safe: 'safe', backend: 'revealjs' }
+asciidoctor.convertFile('presentation.adoc', {attributes: {conf : 'devoxx'}, ...options})
+asciidoctor.convertFile('presentation.adoc', {attributes: {conf : 'breizhcamp'}, 'to_file': 'presentation-bzh.html',  ...options})
