@@ -37,9 +37,10 @@ image::images/guinness.jpeg[width=70%]
 
 image::images/{conf}-background.png[background, size=cover]
 
-* JDK 14 : JEP 359 Records (Preview)
-* JDK 15 : JEP 384 Records (Second Preview)
-* JDK 16 : JEP 395: Records
+* 03/2020 - JDK 14 : JEP 359 Records (Preview)
+* 09/2020 - JDK 15 : JEP 384 Records (Second Preview)
+* ⭐️ 03/2021 - JDK 16 : JEP 395: Records
+* 09/2021 - JDK 17 (LTS)
 
 [source, java]
 ----
@@ -227,6 +228,7 @@ image::images/{conf}-background.png[background, size=cover]
 
 image::images/dto.png[width=75%]
 
+////
 == 🔑 Clé dans une map
 
 image::images/{conf}-background.png[background, size=cover]
@@ -261,6 +263,7 @@ public List<String> sortCountryByMedal(List<String> countries) {
         .collect(toList());
 }
 ----
+////
 
 == 😱 Primitive Obsession - Problème 
 

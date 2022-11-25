@@ -19,6 +19,7 @@ jobs:
           cp -R node_modules public
           cp presentation.html public/index.html
           cp presentation-bzh.html public/index-bzh.html
+          cp presentation-bdxio.html public/index-bdxio.html
           cp custom.css public/custom.css
           touch public/.nojekyll
 
