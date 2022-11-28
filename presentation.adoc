@@ -416,6 +416,8 @@ public record MedalCount(int gold, int silver, int bronze) {
 
 == Vous avez reconnu le Monoid 🙈
 
+image::images/{conf}-background.png[background, size=cover]
+
 [source%linenums, java]
 ----
 var count1 = new MedalCount(5, 2, 1);
